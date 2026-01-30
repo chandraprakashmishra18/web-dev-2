@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="day-7.js"></script>
+
+    <h1>EXECUTION CONTEXT:</h1>
+    <p>It is an abstract concept which holds information about the environment within which the current
+    <h2>1.GLOBAL EXECUTION CONTEXT </h2>
+     <h3> PHASES:</h3>
+       <h3> 1.CREATION PHASE (M.A)</h3>
+             -GLOBAL OBJECT CREATION
+             -THIS KEYWORD INITIALIZATION
+             -VARIABLES, FUNCTIONS, AND ARGUMENTS OBJECT CREATION
+        <h3> 2.EXECUTION PHASE (Code Execution)</h3>
+             -CODE IS EXECUTED LINE BY LINE
+    <h2> 2.FUNCTIONAL EXECUTION CONTEXT</h2>
+        <h3> PHASES:</h3>
+        <h3> 1.CREATION PHASE (M.A)</h3>
+                -ARGUMENTS OBJECT CREATION
+                -THIS KEYWORD INITIALIZATION
+                -VARIABLES AND FUNCTIONS CREATION
+            <h3> 2.EXECUTION PHASE (Code Execution)</h3>
+                -CODE IS EXECUTED LINE BY LINE
+                            GEC
+            ------------------------------------------
+                M.A.         |             C.E.
+            a = undefined    |   a = 10
+                             |------------------------
+                             |     FEC
+                             |------------------------
+                             | M.A.         |   C.E.
+                             |------------------------
+                             | x= undefined | x=20 
+                             |------------------------
+            <h2>CallStack:</h2>
+            -It is a stack data structure which stores all the execution contexts created during the code execution
+            in a LIFO(Last In First Out) manner.
+            <h2>Memory Heap:</h2>
+            -It is a large unstructured region of memory which is used for dynamic memory allocation where
+            variables are allocated memory at runtime.
+            <h2>Execution Context Stack:</h2>
+            -It is the combination of Call Stack and Memory Heap.
+            <p>
+            
+            |                 | 
+            |     FEC         |
+            |     GEC         |
+            |_________________|
+
+        </p>
+
+   
+
+</body>
+</html>
