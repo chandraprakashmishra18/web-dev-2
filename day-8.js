@@ -5,4 +5,13 @@ heading.style.color="tomato";
 heading.style.backgroundColor="yellow";
 
 const para = document.getElementsByClassName("para");
-para.style=backgroundColor='Cyan'
+ console.log(para);
+
+ for (let i=0;i<para.length;i++){
+    para[i].style.backgroundColor="Cyan";
+ }
+
+//  queryselector
+const qs = document.querySelector("#content p")
+console.log(qs);
+qs.textContent="lorem djkabn. j d. eqjo. e j"
