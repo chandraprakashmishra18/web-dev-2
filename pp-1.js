@@ -17,5 +17,5 @@ obj3={}
 for (key in obj1){
     obj3[key]=obj1[key]
     obj3[value]=obj2[value]
-    console.log(obj3);
+    console.log(obj3);m 
 }
