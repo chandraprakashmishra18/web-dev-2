@@ -1,4 +1,4 @@
-const heading  = document.getElementById("myHeading");
+const heading = document.getElementById("myHeading");
 console.log(heading);
 
 heading.style.color="tomato";
