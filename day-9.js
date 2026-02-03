@@ -3,10 +3,11 @@
     profile.style.padding="15px"
     profile.style.textAlign="center"
 
-const task2 = document.getElementsByClassName("taskclass");
-console.log(task2);
-for(let i=0;i<task2.length;i++){
-    task2[i].style.color="voilet"
-    task[i].style.fontSize="40px"
+const Task2 = document.getElementsByClassName("taskclass");
+console.log(Task2);
+for(let i=0;i<Task2.length;i++){
+    Task2[i].style.color="Green"
+    Task2[i].style.fontSize="40px"
 }
-console.log(task2.length)
+console.log(Task2.length)
+
