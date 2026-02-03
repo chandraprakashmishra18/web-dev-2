@@ -1,28 +1,28 @@
-// let arr=[1,2,3,4,5];
-// let arr2=[];
-// for (let i=0; arr.length>0; i++){
-//      arr2.push(arr.pop());
-// }
+let arr=[1,2,3,4,5];
+let arr2=[];
+for (let i=0; arr.length>0; i++){
+     arr2.push(arr.pop());
+}
+console.log(arr2);
+
+// OR
+
+
+//  while (arr.length!=0){
+//     let apop=arr.pop();
+//     arr2.push(apop);
+// 
 // console.log(arr2);
 
-// // OR
-
-
-// //  while (arr.length!=0){
-// //     let apop=arr.pop();
-// //     arr2.push(apop);
-// // }
-// // console.log(arr2);
-
-// let arr32=[-1,2,-3,4,5,-6,7,-8,9];
-// let posArr=[];
-// while (arr32.length!=0){
-//     let ashift=arr32.shift();
-//     if (ashift>0){
-//         posArr.push(ashift);
-//     }
-// }
-// console.log(posArr);
+let arr32=[-1,2,-3,4,5,-6,7,-8,9];
+let posArr=[];
+while (arr32.length!=0){
+    let ashift=arr32.shift();
+    if (ashift>0){
+        posArr.push(ashift);
+    }
+}
+console.log(posArr);
 
 // // OR
 

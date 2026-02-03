@@ -1,0 +1,29 @@
+INTERVIEW QUESTIONS<br><br>
+
+    QUESTION: 
+    1. DIFF B/W SPREAD OPERATOR AND REST OPERATOR<br><br>
+    2. WHAT IS NULLISH COALESCING OPERATOR<br><br>
+    3. DIFFERENCE B/W SETTIMEOUT AND SETINTERVAL<br><br>
+    1.difference btw var,let, and const
+2.explain different types of js operators
+3.difference btw == and ===
+4.what is hoisting and TDZ.
+5.explain different array methods in Js
+    -map vs filter vs reduce
+    -find and filter
+    -map and foreach
+    -some and every
+6.string, object methods.
+7.types of function
+    -regular function
+    -arrow function
+    -fast class function
+    -higher order function
+    -callback function
+    -anonymous function
+    -self invoking function (IIFE)
+8.difference between spread operator and rest parameter    
+9. what is nullish coalescing operator
+10.difference between setInterval and setTimeout.
+11.What is DOM.
+12.Differnce b/w get element by id and get element by class name.
