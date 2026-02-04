@@ -16,3 +16,18 @@ image.setAttribute("src" , "https://imgs.search.brave.com/tA4GGA4fZ7tQuApx2apSfJ
 image.setAttribute("alt" , "Virat KOhli image");
 const gallery = document.getElementById("gallery");
 gallery.appendChild(image);
+
+//  Date method
+
+let date = new Date()
+console.log(date);
+
+setInterval( () =>{
+    let date = new Date()
+    console.log(date);
+
+    let hour = date.getHours();
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
+
+})
