@@ -10,8 +10,18 @@
 //     },5000);
 // }
 // console.log(myFunction);
+// console.log("Start...");
+// function myFunction(cb) {
+//     setTimeout (()=>{
+//         cb("Hello World");
+//     },5000);
+// }
+// myFunction((data)=>{
+//     console.log(data);
+// });
+// console.log("End..");
 console.log("Start...");
-function myFunction(cb) {
+function login(uname, password, cb) {
     setTimeout (()=>{
         cb("Hello World");
     },5000);
@@ -20,3 +30,4 @@ myFunction((data)=>{
     console.log(data);
 });
 console.log("End..");
+
