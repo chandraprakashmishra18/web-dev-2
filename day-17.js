@@ -27,5 +27,5 @@ console.log("Last line")
 //  all micro task are executed one by one ( follows fifo behaviour )
 // callstack follows lifo behaviour 
 // setTimeout jaise fncn web API me store hote h 
-// once we start using 
+// once we start executing js on 
 // eventloop is like the manager who mamages who'll be running first and in which behaviour 
