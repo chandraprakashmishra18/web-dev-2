@@ -1,54 +1,253 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Async Weather Tracker</title>
-<link rel="stylesheet" href="assignment-2.css">
+    <meta charset="UTF-8">
+    <title>Async Weather Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000000, #2a288a);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .parent-card {
+            display: flex;
+            gap: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #BBE0EF;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #BBE0EF;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #F16D34;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .weather-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-left: 4px solid #F16D34;
+            margin-bottom: 6px;
+            background: #f9f9f9;
+        }
+
+        .history button {
+            margin: 5px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .history-item {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: rgb(250, 0, 0);
+            margin-left: 5px;
+            padding: 4px 8px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        @media (max-width:700px) {
+            .parent-card {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
+<div class="container">
 
-<h2>🌤 Async Weather Tracker</h2>
+    <h1>Async Weather Tracker</h1>
 
-<div class="main">
+    <div class="parent-card">
+        <div class="card">
+            <h3>Search City</h3>
+            <div class="input-group">
+                <input id="cityInput" placeholder="Delhi, London">
+                <button id="searchBtn">Search</button>
+            </div>
 
-<div class="left">
+            <br>
 
-<h4>Search City</h4>
+            <h3>Search History</h3>
+            <button onclick="clearHistory()">Clear All</button>
+            <div class="history" id="history"></div>
+        </div>
 
-<input type="text" id="city">
-
-<button onclick="searchWeather()">Search</button>
-
-<h4>Search History</h4>
-
-<div id="history"></div>
-
-</div>
-
-<div class="right">
-
-<h4>Weather Info</h4>
-
-<p>City <span id="cityName"></span></p>
-<p>Temp <span id="temp"></span></p>
-<p>Weather <span id="weather"></span></p>
-<p>Humidity <span id="humidity"></span></p>
-<p>Wind <span id="wind"></span></p>
+        <div class="card">
+            <h3>Weather Info</h3>
+            <div id="weather"></div>
+        </div>
+    </div>
 
 </div>
 
-</div>
+<script>
+    const API_KEY = "1de0181b6dd424271dec30b076344656";
 
-<div class="console">
+    const weatherBox = document.getElementById("weather");
+    const historyBox = document.getElementById("history");
+    const cityInput = document.getElementById("cityInput");
 
-<h4>Console – Event Loop</h4>
+    /* ---------- FETCH WEATHER ---------- */
+    async function getWeather(city) {
+        const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        );
 
-<div id="log"></div>
+        if (!res.ok) {
+            throw new Error("City not found");
+        }
 
-</div>
+        return await res.json();
+    }
 
-<script src="assignment-2.js
-"></script>
+    /* ---------- RENDER WEATHER ---------- */
+    function renderWeather(d) {
+        weatherBox.innerHTML = `
+            <div class="weather-item"><label>City</label><span>${d.name}, ${d.sys.country}</span></div>
+            <div class="weather-item"><label>Temperature</label><span>${d.main.temp} °C</span></div>
+            <div class="weather-item"><label>Weather</label><span>${d.weather[0].main}</span></div>
+            <div class="weather-item"><label>Humidity</label><span>${d.main.humidity}%</span></div>
+            <div class="weather-item"><label>Wind Speed</label><span>${d.wind.speed} m/s</span></div>
+        `;
+    }
+
+    /* ---------- SAVE HISTORY ---------- */
+    function saveHistory(city) {
+        let history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+
+        // remove if already exists (for recent-first)
+        history = history.filter(c => c !== city);
+
+        // add at beginning
+        history.unshift(city);
+
+        // limit to last 5
+        history = history.slice(0, 5);
+
+        localStorage.setItem("weatherHistory", JSON.stringify(history));
+
+        showHistory();
+    }
+
+    /* ---------- SHOW HISTORY ---------- */
+    function showHistory() {
+        historyBox.innerHTML = "";
+
+        let history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+
+        history.forEach(city => {
+            const div = document.createElement("div");
+            div.className = "history-item";
+
+            const btn = document.createElement("button");
+            btn.innerText = city;
+            btn.onclick = () => search(city);
+
+            const del = document.createElement("button");
+            del.innerText = "×";
+            del.className = "delete-btn";
+            del.onclick = () => deleteCity(city);
+
+            div.appendChild(btn);
+            div.appendChild(del);
+
+            historyBox.appendChild(div);
+        });
+    }
+
+    /* ---------- DELETE SINGLE CITY ---------- */
+    function deleteCity(city) {
+        let history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+
+        history = history.filter(c => c !== city);
+
+        localStorage.setItem("weatherHistory", JSON.stringify(history));
+
+        showHistory();
+    }
+
+    /* ---------- CLEAR HISTORY ---------- */
+    function clearHistory() {
+        localStorage.removeItem("weatherHistory");
+        showHistory();
+    }
+
+    /* ---------- SEARCH ---------- */
+    async function search(city) {
+        weatherBox.innerHTML = "Loading...";
+        try {
+            const data = await getWeather(city);
+            renderWeather(data);
+            saveHistory(data.name);
+        } catch (error) {
+            weatherBox.innerHTML = `<p style="color:red">${error.message}</p>`;
+        }
+    }
+
+    /* ---------- BUTTON CLICK ---------- */
+    document.getElementById("searchBtn").onclick = () => {
+        const city = cityInput.value.trim();
+        if (city) search(city);
+    };
+
+    /* ---------- ENTER KEY ---------- */
+    cityInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const city = cityInput.value.trim();
+            if (city) search(city);
+        }
+    });
+
+    /* ---------- INITIAL LOAD ---------- */
+    showHistory();
+</script>
 
 </body>
 </html>
