@@ -162,7 +162,7 @@
     function saveHistory(city) {
         let history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
 
-        // remove if already exists (for recent-first)
+        // remove if already exists
         history = history.filter(c => c !== city);
 
         // add at beginning
