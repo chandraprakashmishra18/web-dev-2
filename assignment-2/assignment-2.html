@@ -160,21 +160,14 @@
 
     /* ---------- SAVE HISTORY ---------- */
     function saveHistory(city) {
-        let history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+    let history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
 
-        // remove if already exists
-        history = history.filter(c => c !== city);
+    history = history.filter(c => c !== city);
+    history.unshift(city);
 
-        // add at beginning
-        history.unshift(city);
-
-        // limit to last 5
-        history = history.slice(0, 5);
-
-        localStorage.setItem("weatherHistory", JSON.stringify(history));
-
-        showHistory();
-    }
+    localStorage.setItem("weatherHistory", JSON.stringify(history));
+    showHistory(); 
+}
 
     /* ---------- SHOW HISTORY ---------- */
     function showHistory() {

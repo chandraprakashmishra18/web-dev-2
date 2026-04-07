@@ -27,3 +27,9 @@ INTERVIEW QUESTIONS<br><br>
 10.difference between setInterval and setTimeout.
 11.What is DOM.
 12.Differnce b/w get element by id and get element by class name.
+what is single page application 
+the diff b/w spa(single page application) and mpa (multi page application)
+Explain one-way data binding in react
+How JSX work in react and what is bable
+Explain Life Cycle Methods and it's disadvantages 
+How to tackle life cycle methos by using useEffect hook.
