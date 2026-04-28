@@ -33,3 +33,5 @@ Explain one-way data binding in react
 How JSX work in react and what is bable
 Explain Life Cycle Methods and it's disadvantages 
 How to tackle life cycle methos by using useEffect hook.
+Difference b/w Controlled and Uncontrolled components.
+How to manage state in react by using useState hook
